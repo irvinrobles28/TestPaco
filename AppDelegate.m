@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import <GoogleMaps/GoogleMaps.h>
+#import "Constant.h"
+#import "AFNetworking.h"
 
 @interface AppDelegate ()
 
@@ -16,8 +19,23 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    [GMSServices provideAPIKey:GOOGLE_KEY];
+    
+    UIUserNotificationType types = (UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound);
+    UIUserNotificationSettings *settings=[UIUserNotificationSettings settingsForTypes:types categories:nil];
+    [[UIApplication sharedApplication]registerUserNotificationSettings:settings];
+    
     return YES;
+}
+
+-(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    NSLog(@".........");
+}
+
+-(void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
+    NSLog(@".........");
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
